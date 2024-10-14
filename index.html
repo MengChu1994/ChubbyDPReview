@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review for Meng</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000; /* Black background */
+      color: #fff; /* White text */
+    }
+    h1 {
+      color: #ffcc00; /* Gold color for the title */
+    }
+    .button {
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      background-color: #ffcc00; /* Gold background for buttons */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #000; /* Black text for buttons */
+    }
+    .button:hover {
+      background-color: #ff9900;
+    }
+    #generated-review {
+      margin: 20px;
+      font-size: 16px;
+      background-color: #333; /* Dark grey background for review box */
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff; /* White text for review */
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    }
+    .review-link {
+      display: block;
+      margin: 20px;
+      padding: 15px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #0073bb;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .review-link:hover {
+      background-color: #005f99;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Review for Meng</h1>
+
+  <!-- Buttons to Generate Review and Copy -->
+  <button class="button" onclick="generateReview()">Generate Review</button>
+  <button class="button" onclick="copyToClipboard()">Copy to Clipboard</button>
+
+  <!-- Display Generated Review -->
+  <div id="generated-review">Your review will appear here!</div>
+
+  <!-- Yelp and Google Links -->
+  <a href="https://www.yelp.com/writeareview/biz/WdshnXVjeZq-MvVofMzuTA?return_url=https%3A%2F%2Fm.yelp.com%2Fbiz%2Fchubby-cattle-bbq-rowland-heights-rowland-heights-2&review_origin=mobile-site-biz-details-action-button" class="review-link">Leave a Yelp Review</a>
+  <a href="https://search.google.com/local/reviews?placeid=ChIJdb7bHhArw4ARy2xVgbwxdMI&q=google+review+chubby+cattle+rowland+heights&hl=en&gl=US" class="review-link">Leave a Google Review</a>
+
+  <script>
+    // Predefined review segments with more templates for variety
+    const serviceReviews = [
+      "Meng provided exceptional service with a friendly attitude throughout our meal.",
+      "The level of professionalism Meng displayed was outstanding, ensuring we had a great experience.",
+      "Meng's service was top-notch! Friendly, attentive, and incredibly helpful.",
+      "Meng was very welcoming and made sure our dining experience was smooth and enjoyable.",
+      "Meng’s attention to detail was impressive, and they made us feel right at home.",
+      "We were impressed by Meng's excellent service. They made sure our table was well looked after!",
+      "Meng went above and beyond to ensure we had everything we needed. A+ service!",
+      "Meng's enthusiasm and care really stood out, making our dinner so much more pleasant.",
+      "Thanks to Meng, we felt well taken care of from start to finish. Their service was amazing!"
+    ];
+
+    const foodReviews = [
+      "The A5 Wagyu was absolutely delicious, melting in our mouths.",
+      "The variety of Wagyu cuts at Chubby Cattle is unbeatable, and everything was so fresh!",
+      "Not only was the meat top-quality, but the sushi and sashimi were just as excellent.",
+      "Chubby Cattle's all-you-can-eat Wagyu selection is simply unmatched.",
+      "The A5 Wagyu was the highlight, but the sashimi was also fresh and flavorful.",
+      "The range of meats, from Wagyu to other premium cuts, was impressive and cooked perfectly.",
+      "The sushi was fresh, and the Wagyu was melt-in-your-mouth good. We couldn’t get enough!",
+      "We absolutely loved the A5 Wagyu. The quality was out of this world!",
+      "The selection of appetizers, sushi, and premium meats was overwhelming—in the best way possible."
+    ];
+
+    const drinkReviews = [
+      "The self-serve drink bar had so many great options, from milk tea to refreshing slushies.",
+      "I loved the variety of drinks available—especially the milk tea!",
+      "The slushies and soft drinks were a perfect complement to the meal.",
+      "The drink bar was loaded with choices—whether you’re into milk tea, soda, or something cold and sweet.",
+      "We were spoiled for choice with the drinks. The milk tea and slushies were our favorites.",
+      "Chubby Cattle’s drink selection was amazing. Loved the milk tea and the variety of sodas!",
+      "The self-serve drink station had a wide range of drinks, and the slushies were perfect after all the meat.",
+      "There were endless options for drinks, and we especially enjoyed the cold slushies after a big meal.",
+      "The variety of drinks really stood out, especially the milk tea. It was the perfect pairing with the BBQ."
+    ];
+
+    const environmentReviews = [
+      "The restaurant had a cozy and modern vibe, making our experience even more enjoyable.",
+      "Chubby Cattle’s environment was perfect for a fun, casual dining experience.",
+      "The space was clean, stylish, and perfect for an all-you-can-eat feast.",
+      "The restaurant had a great atmosphere, with a clean, modern look that made us feel comfortable.",
+      "We loved the ambiance of the restaurant—cozy yet vibrant, perfect for group dinners.",
+      "The modern decor and relaxing atmosphere made it a great place to enjoy our meal.",
+      "Chubby Cattle has a really welcoming environment, stylish but also very laid-back.",
+      "The space was inviting and clean, and it made our all-you-can-eat experience even better.",
+      "We appreciated the comfortable seating and warm, modern decor that made the experience feel special."
+    ];
+
+    // Function to generate random review
+    function generateReview() {
+      const service = serviceReviews[Math.floor(Math.random() * serviceReviews.length)];
+      const food = foodReviews[Math.floor(Math.random() * foodReviews.length)];
+      const drink = drinkReviews[Math.floor(Math.random() * drinkReviews.length)];
+      const environment = environmentReviews[Math.floor(Math.random() * environmentReviews.length)];
+
+      const review = `${service} The food was fantastic. ${food} We loved the drinks. ${drink} Lastly, the atmosphere was spot on. ${environment}`;
+      document.getElementById('generated-review').innerText = review;
+    }
+
+    // Function to copy review to clipboard
+    function copyToClipboard() {
+      const reviewText = document.getElementById('generated-review').innerText;
+      navigator.clipboard.writeText(reviewText);
+      alert("Review copied to clipboard!");
+    }
+  </script>
+
+</body>
+</html>
